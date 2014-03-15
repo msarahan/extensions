@@ -29,9 +29,9 @@ def align_selected_stack(document_controller):
         if data_item is not None:
             logging.info("Starting image alignment.")
             with data_item.data_ref() as d:
-                data=d.data
+                data = d.data
                 if len(data.shape) is 3:
-                    number_frames=data.shape[0]
+                    number_frames = data.shape[0]
                     task.update_progress(_("Starting image alignment."), (0, number_frames))
                     # Pre-allocate an array for the shifts we'll measure
                     shifts = np.zeros((number_frames, 2))
@@ -57,7 +57,6 @@ def align_selected_stack(document_controller):
                     logging.info("error: a 3D data stack is required for this task")
         else:
             logging.info("no data item is selected")
-    
 
 # This is the main function that gets run when the user selects the menu item.
 def run_alignment(document_controller):

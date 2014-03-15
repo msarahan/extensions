@@ -13,14 +13,14 @@ import dftregister
 def blur(image, blur_size=7):
     """
     Blurs input input with a Gaussian filter.  Sigma for the Gaussian filter is 3.
-    
+
     Parameters
     ----------
     image : array_like
             The input image
     blur_size : int, optional, defaults to 7
             The pixel size of the Gaussian convolution kernel.  Should be odd.
-            
+
     Returns
     -------
     array_like
@@ -31,7 +31,7 @@ def blur(image, blur_size=7):
 def edge_filter(image):
     """
     Highlights edges in image using Sobel filtering (with Scharr kernels)
-    
+
     Parameters
     ----------
     image : array_like
@@ -49,7 +49,8 @@ def edge_filter(image):
 def get_shift(data1, data2, blur_image=True, edge_filter_image=False,
                         interpolation_factor=100):
     """
-    
+    Parameters
+    ----------
     data1 : array_like, 2D
             Reference image
     data2 : array_like, 2D
@@ -61,7 +62,7 @@ def get_shift(data1, data2, blur_image=True, edge_filter_image=False,
             image contrast changes.
     interpolation_factor : int
             Fraction of a pixel to which to register.  100 means 1/100 of a pixel precision.
-    
+
     Returns
     -------
     array_like
@@ -76,15 +77,13 @@ def get_shift(data1, data2, blur_image=True, edge_filter_image=False,
         ref = edge_filter(ref)
         target = edge_filter(target)
     return dftregister.dftregistration(ref, target, interpolation_factor)
-    
-    
 
 def align_and_sum_stack(stack, blur_image=True, edge_filter_image=False,
                         interpolation_factor=100):
     """
     Given image list or 3D stack, this function uses cross correlation and Fourier space supersampling
     to find the subpixel shift between images, then apply those offsets and sum the images.
-    
+
     Parameters
     ----------
     stack : array_like, 3D
@@ -96,7 +95,7 @@ def align_and_sum_stack(stack, blur_image=True, edge_filter_image=False,
             image contrast changes.
     interpolation_factor : int
             Fraction of a pixel to which to register.  100 means 1/100 of a pixel precision.
-            
+
     Returns
     -------
     array_like
