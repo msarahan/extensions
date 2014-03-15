@@ -139,27 +139,3 @@ def dftups(data, upsampled_rows=None, upsampled_cols=None, upsample_factor=1, ro
     row_kernel = np.exp((-1j*2*np.pi/(rows*upsample_factor)) * (np.arange(upsampled_rows)[:, np.newaxis] - row_offset).dot(np.fft.ifftshift(np.arange(rows))[np.newaxis, :] - np.floor(rows/2)))
     return row_kernel.dot(data).dot(col_kernel)
 
-def shift_image(data, row_shift=0, col_shift=0):
-    """
-    Shifts input image in Fourier space, effectively wrapping around at boundaries.
-
-    Parameters
-    ----------
-    data : array_like
-            The image data (real-space) to be shifted
-    row_shift : int or float
-            The shift to be applied along rows (Y-shift)
-    col_shift : int or float
-            The shift to be applied along columns (X-shift)
-
-    Returns
-    -------
-    array_like
-            The shifted image (in real-space)
-    """
-    data = np.fft.fft2(data)
-    rows, cols = data.shape
-    row_vector = np.fft.ifftshift(np.arange(-np.fix(rows/2), np.ceil(rows/2)))
-    col_vector = np.fft.ifftshift(np.arange(-np.fix(cols/2), np.ceil(cols/2)))
-    col_array, row_array = np.meshgrid(col_vector, row_vector)
-    return np.fft.ifft2(data*np.exp(1j*2*np.pi*(-row_shift*row_array/rows-col_shift*col_array/cols))).real
