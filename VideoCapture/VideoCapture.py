@@ -95,6 +95,7 @@ class VideoCaptureHardwareSource(HardwareSource.HardwareSource):
         data = self.buffer.copy()
         self.done_event.set()
         data_element = {
+            "version": 1,
             "data": data,
             "properties": {
                 "hardware_source": self.hardware_source,
