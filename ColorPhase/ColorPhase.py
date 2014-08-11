@@ -6,14 +6,16 @@
 #
 
 import gettext
-
-import numpy as np
 import math
 
+import numpy as np
+
+
 # local libraries
-from nion.imaging import Image
-from nion.imaging import Operation
 from nion.swift import Application
+from nion.swift.model import Image
+from nion.swift.model import Operation
+
 _ = gettext.gettext  # for translation
 
 #The operation class. Functions in it are called by Swift.

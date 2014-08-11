@@ -18,8 +18,8 @@ import scipy.fftpack
 
 # local libraries
 from nion.swift import Application
-from nion.imaging import Image
-from nion.imaging import Operation
+from nion.swift.model import Image
+from nion.swift.model import Operation
 
 
 _ = gettext.gettext

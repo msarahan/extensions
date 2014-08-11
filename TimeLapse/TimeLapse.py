@@ -9,7 +9,7 @@ import time
 
 # local libraries
 from nion.swift import Application
-from nion.swift import HardwareSource
+from nion.swift.model import HardwareSource
 
 
 _ = gettext.gettext

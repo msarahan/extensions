@@ -1,9 +1,11 @@
 # standard libraries
 import gettext
 import logging
-import numpy
 import threading
 import time
+
+import numpy
+
 
 # third party libraries
 # see http://docs.opencv.org/index.html
@@ -11,7 +13,7 @@ import cv2
 import cv2.cv as cv
 
 # local libraries
-from nion.swift import HardwareSource
+from nion.swift.model import HardwareSource
 
 _ = gettext.gettext
 
@@ -93,6 +95,7 @@ class VideoCaptureHardwareSource(HardwareSource.HardwareSource):
         data = self.buffer.copy()
         self.done_event.set()
         data_element = {
+            "version": 1,
             "data": data,
             "properties": {
                 "hardware_source": self.hardware_source,
